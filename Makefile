@@ -19,9 +19,10 @@ DIST:=${BUILDDIR}/dist
 
 MANIFEST=pyqgiswps/build.manifest
 
-PYTHON:=/opt/local/pyqgiswps/bin/python3
+PYTHON:=/opt/local/pyqgiswps/bin/python
 
 all:
+	ls /opt/local/pyqgiswps/
 	make dirs
 	make version
 	make manifest
