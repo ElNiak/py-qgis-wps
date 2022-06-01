@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends gosu \
      python3-shapely  \
      python3-psutil \
      git \
+     make \
      && apt-get clean  && rm -rf /var/lib/apt/lists/* \
      && rm -rf /usr/share/man 
 
@@ -43,6 +44,8 @@ COPY /docker-entrypoint.sh /
 RUN chmod 0755 /docker-entrypoint.sh
 
 EXPOSE 8080
+
+ENV PROCESSING_PROVIDERS_MODULE_PATH=/qgis-wps/qgis-threejs
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 

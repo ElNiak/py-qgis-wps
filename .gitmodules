@@ -1,3 +1,6 @@
 [submodule "qgis-platform"]
 	path = qgis-platform
 	url = https://github.com/3liz/docker-qgis-platform.git
+[submodule "qgis-threejs"]
+	path = qgis-threejs
+	url = https://github.com/ElNiak/Qgis2threejs.git

@@ -41,5 +41,5 @@ if [ "$(id -u)" = '0' ]; then
 fi
 
 # Run as QGSWPS_USER
-exec wpsserver $@ -p 8080
+exec wpsserver $@ -p 8080 -d
 

@@ -27,7 +27,7 @@ all:
 	make manifest
 	make deps
 	make wheel
-	make deliver
+	# make deliver
 	make dist
 	make test
 
@@ -45,9 +45,10 @@ manifest: version
 
 # Build dependencies
 deps: dirs
-	pip wheel -w $(DIST) -r requirements.txt
+	/opt/local/pyqgiswps/bin/pip wheel -w $(DIST) -r requirements.txt
 
 wheel: deps
+	/opt/local/pyqgiswps/bin/pip install wheel
 	mkdir -p $(DIST)
 	$(PYTHON) setup.py bdist_wheel --dist-dir=$(DIST)
 
@@ -69,6 +70,7 @@ test-%:
 	$(MAKE) -C tests $* FLAVOR=$(FLAVOR)
 
 lint:
+	/opt/local/pyqgiswps/bin/pip install flake8
 	@flake8 --ignore=E123,E2,E3,E5,W2,W3  pyqgiswps pyqgisservercontrib
 
 test: lint manifest test-test

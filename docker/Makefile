@@ -41,8 +41,11 @@ all:
 	@echo "Usage: make [build|deliver|clean]"
 
 build: 
-	cd ../qgis-platform; make build FLAVOR=release TARGET=ubuntu
-	cd ../docker;_build manifest
+	{ \
+	cd ../qgis-platform; \
+	make build FLAVOR=release TARGET=ubuntu; \
+	cd ../docker; \
+	make _build manifest; }
 		
 
 DOCKER_CACHE:=--force-rm --no-cache
