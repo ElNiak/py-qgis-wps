@@ -28,13 +28,11 @@ RUN mkdir -p /opt/local/ \
         pandas \
         Jinja2 
 
-RUN git clone --recurse-submodules https://github.com/ElNiak/py-qgis-wps.git
+RUN git clone --recurse-submodules https://github.com/ElNiak/py-qgis-wps.git qgis-wps
 
-WORKDIR /py-qgis-wps
+WORKDIR /qgis-wps
 
-RUN make dirs; make version; make manifest; \
-    make deps; make wheel; make deliver; \
-    make dist; make test
+RUN make all
 
 RUN /opt/local/pyqgiswps/bin/pip install --no-cache-dir .   \
     && ln -s /opt/local/pyqgiswps/bin/wpsserver \

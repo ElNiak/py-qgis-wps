@@ -21,6 +21,16 @@ MANIFEST=pyqgiswps/build.manifest
 
 PYTHON:=python3
 
+all:
+	make dirs
+	make version
+	make manifest
+	make deps
+	make wheel
+	make deliver
+	make dist
+	make test
+
 dirs:
 	mkdir -p $(DIST)
 

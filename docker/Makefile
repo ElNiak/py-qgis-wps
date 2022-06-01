@@ -40,7 +40,10 @@ MANIFEST=factory.manifest
 all:
 	@echo "Usage: make [build|deliver|clean]"
 
-build: _build manifest
+build: 
+	cd ../qgis-platform; make build FLAVOR=release TARGET=ubuntu
+	cd ../docker;_build manifest
+		
 
 DOCKER_CACHE:=--force-rm --no-cache
 
