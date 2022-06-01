@@ -52,7 +52,7 @@ clean:
 	rm -rf $(DIST) *.egg-info
 
 
-FLAVOR:=release
+FLAVOR:=ltr-ubuntu #release
 
 # Run tests with docker-test
 test-%:

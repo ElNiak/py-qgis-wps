@@ -12,6 +12,7 @@ ARG BUILD_VERSION
 RUN apt-get update && apt-get install -y --no-install-recommends gosu \
      python3-shapely  \
      python3-psutil \
+     git \
      && apt-get clean  && rm -rf /var/lib/apt/lists/* \
      && rm -rf /usr/share/man 
 
@@ -25,9 +26,17 @@ RUN mkdir -p /opt/local/ \
         geojson \
         scipy  \
         pandas \
-        Jinja2 \
-    && /opt/local/pyqgiswps/bin/pip install --no-cache-dir $PIP_OPTIONS   \
-        "py-qgis-wps==${BUILD_VERSION}" \
+        Jinja2 
+
+RUN git clone --recurse-submodules https://github.com/ElNiak/py-qgis-wps.git
+
+WORKDIR /py-qgis-wps
+
+RUN make dirs; make version; make manifest; \
+    make deps; make wheel; make deliver; \
+    make dist; make test
+
+RUN /opt/local/pyqgiswps/bin/pip install --no-cache-dir .   \
     && ln -s /opt/local/pyqgiswps/bin/wpsserver \
     && ln -s /opt/local/pyqgiswps/bin/wpsserver-check \
     && rm -rf /root/.cache /root/.ccache

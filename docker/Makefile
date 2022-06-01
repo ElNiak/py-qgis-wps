@@ -9,7 +9,8 @@ NAME=qgis-wps
 BUILDID=$(shell date +"%Y%m%d%H%M")
 COMMITID=$(shell git rev-parse --short HEAD)
 
-FLAVOR:=release
+FLAVOR:=ltr-ubuntu
+# default
 
 # Server version
 BUILD_VERSION:=$(shell cd .. && python3 setup.py --version)
