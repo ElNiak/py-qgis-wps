@@ -31,7 +31,7 @@ all:
 	make wheel
 	# make deliver
 	#make dist
-	make test
+	#make test
 
 dirs:
 	mkdir -p $(DIST)
