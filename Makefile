@@ -48,7 +48,7 @@ deps: dirs
 	/opt/local/pyqgiswps/bin/pip wheel -w $(DIST) -r requirements.txt
 
 wheel: deps
-	/opt/local/pyqgiswps/bin/pip install wheel
+	/opt/local/pyqgiswps/bin/pip3 install wheel
 	mkdir -p $(DIST)
 	$(PYTHON) setup.py bdist_wheel --dist-dir=$(DIST)
 
