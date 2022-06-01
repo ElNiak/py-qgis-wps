@@ -27,7 +27,14 @@ RUN mkdir -p /opt/local/ \
         geojson \
         scipy  \
         pandas \
-        Jinja2 
+        Jinja2 \ 
+        wheel \
+        flake8
+
+# RUN add-apt-repository universe
+# RUN apt-get install gcc libpq-dev -y
+# RUN apt-get install python-dev  python-pip -y
+# RUN apt-get install python3-dev python3-pip python3-venv python3-wheel -y
 
 RUN git clone --recurse-submodules https://github.com/ElNiak/py-qgis-wps.git qgis-wps
 
@@ -39,6 +46,7 @@ RUN /opt/local/pyqgiswps/bin/pip install --no-cache-dir .   \
     && ln -s /opt/local/pyqgiswps/bin/wpsserver \
     && ln -s /opt/local/pyqgiswps/bin/wpsserver-check \
     && rm -rf /root/.cache /root/.ccache
+
 
 COPY /docker-entrypoint.sh /
 RUN chmod 0755 /docker-entrypoint.sh

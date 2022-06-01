@@ -19,7 +19,7 @@ DIST:=${BUILDDIR}/dist
 
 MANIFEST=pyqgiswps/build.manifest
 
-PYTHON:=python3
+PYTHON:=/opt/local/pyqgiswps/bin/python3
 
 all:
 	make dirs
@@ -48,7 +48,7 @@ deps: dirs
 	/opt/local/pyqgiswps/bin/pip wheel -w $(DIST) -r requirements.txt
 
 wheel: deps
-	/opt/local/pyqgiswps/bin/pip3 install wheel
+	#/opt/local/pyqgiswps/bin/pip3 install wheel
 	mkdir -p $(DIST)
 	$(PYTHON) setup.py bdist_wheel --dist-dir=$(DIST)
 
@@ -70,7 +70,7 @@ test-%:
 	$(MAKE) -C tests $* FLAVOR=$(FLAVOR)
 
 lint:
-	/opt/local/pyqgiswps/bin/pip install flake8
+	#/opt/local/pyqgiswps/bin/pip install flake8
 	@flake8 --ignore=E123,E2,E3,E5,W2,W3  pyqgiswps pyqgisservercontrib
 
 test: lint manifest test-test
