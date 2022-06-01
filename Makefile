@@ -19,7 +19,8 @@ DIST:=${BUILDDIR}/dist
 
 MANIFEST=pyqgiswps/build.manifest
 
-PYTHON:=/opt/local/pyqgiswps/bin/python
+PYTHON:=/opt/local/pyqgiswps/bin/python3
+PYTHON3:=python3
 
 all:
 	ls /opt/local/pyqgiswps/
@@ -29,7 +30,7 @@ all:
 	make deps
 	make wheel
 	# make deliver
-	make dist
+	#make dist
 	make test
 
 dirs:
@@ -58,7 +59,7 @@ deliver:
 
 dist: dirs manifest
 	rm -rf *.egg-info
-	$(PYTHON) setup.py sdist --dist-dir=$(DIST)
+	$(PYTHON3) setup.py sdist --dist-dir=$(DIST)
 
 clean:
 	rm -rf $(DIST) *.egg-info
@@ -71,7 +72,7 @@ test-%:
 	$(MAKE) -C tests $* FLAVOR=$(FLAVOR)
 
 lint:
-	#/opt/local/pyqgiswps/bin/pip install flake8
+	/opt/local/pyqgiswps/bin/pip install flake8
 	@flake8 --ignore=E123,E2,E3,E5,W2,W3  pyqgiswps pyqgisservercontrib
 
 test: lint manifest test-test
